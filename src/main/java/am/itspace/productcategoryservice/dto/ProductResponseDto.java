@@ -15,5 +15,6 @@ public class ProductResponseDto {
     private String title;
     private int count;
     private double price;
-    private Category category;
+    private CreateCategoryDto category;
+    private ProductUserDto user;
 }

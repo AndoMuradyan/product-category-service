@@ -22,4 +22,6 @@ public class Product {
     private double price;
     @ManyToOne
     private Category category;
+    @ManyToOne
+    private User user;
 }

@@ -1,6 +1,7 @@
 package am.itspace.productcategoryservice.service;
 
 import am.itspace.productcategoryservice.dto.CreateProductDto;
+import am.itspace.productcategoryservice.dto.ProductResponseDto;
 import am.itspace.productcategoryservice.mapper.ProductMapper;
 import am.itspace.productcategoryservice.model.Product;
 import am.itspace.productcategoryservice.repository.ProductRepository;
@@ -8,13 +9,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
     private final ProductRepository productRepository;
+
     private final ProductMapper productMapper;
+
 
     public void saveProduct(CreateProductDto createProductDto) {
         productRepository.save(productMapper.map(createProductDto));
@@ -32,13 +36,12 @@ public class ProductService {
         return productRepository.findAllByCategoryId(id);
     }
 
-
-
-    public List<Product> findAll() {
-        return productRepository.findAll();
+    public List<ProductResponseDto> findAll() {
+        return productMapper.map(productRepository.findAll());
     }
 
-    public void findById(int id) {
-        productRepository.findById(id);
+    public Optional<Product> findById(int id) {
+        return productRepository.findById(id);
+
     }
 }
