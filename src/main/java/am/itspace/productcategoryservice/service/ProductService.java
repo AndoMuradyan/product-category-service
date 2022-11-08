@@ -21,11 +21,15 @@ public class ProductService {
 
 
     public void saveProduct(CreateProductDto createProductDto) {
+        if (createProductDto == null){
+            throw new RuntimeException("Product  be null");
+
+        }
         productRepository.save(productMapper.map(createProductDto));
     }
 
-    public void update(Product product) {
-        productRepository.save(product);
+    public Product update(Product product) {
+       return productRepository.save(product);
     }
 
     public void deleteById(int id) {

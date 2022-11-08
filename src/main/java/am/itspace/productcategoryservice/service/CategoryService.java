@@ -15,13 +15,23 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
 
-    public void saveCategory(CreateCategoryDto createCategoryDto) {
+        public void saveCategory(CreateCategoryDto createCategoryDto) {
+            if (createCategoryDto == null){
+                throw new RuntimeException("Category  be null");
+            }
         categoryRepository.save(categoryMapper.map(createCategoryDto));
 
     }
+//    public void saveCategory(Category category) {
+//        if (category == null) {
+//            throw new RuntimeException("Category  be null");
+//        }
+//        categoryRepository.save(category);
+//
+//    }
 
-    public void updateCategory(Category category) {
-        categoryRepository.save(category);
+    public Category updateCategory(Category category) {
+       return categoryRepository.save(category);
     }
 
     public void deleteById(int id) {
@@ -29,11 +39,11 @@ public class CategoryService {
     }
 
     public List<Category> findAll() {
-       return categoryRepository.findAll();
+        return categoryRepository.findAll();
     }
 
     public void findById(int id) {
-         categoryRepository.findById(id);
+        categoryRepository.findById(id);
 
     }
 }
